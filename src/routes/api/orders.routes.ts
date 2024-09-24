@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import * as controller from '../../controllers/products.controller';
+import * as controller from '../../controllers/orders.controller';
 import authenticationMiddleware from '../../middleware/authenticate.middleware';
 
 const routes = Router();
 
 routes
   .route('/')
-  .get(authenticationMiddleware, controller.getProducts)
+  .get(authenticationMiddleware, controller.getOrders)
   .post(authenticationMiddleware, controller.create);
 
 routes
   .route('/:id')
-  .get(authenticationMiddleware, controller.getProduct)
+  .get(authenticationMiddleware, controller.getOrder)
   .patch(authenticationMiddleware, controller.update)
-  .delete(authenticationMiddleware, controller.deleteProduct);
+  .delete(authenticationMiddleware, controller.deleteOrder);
 
 export default routes;

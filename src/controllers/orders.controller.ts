@@ -1,39 +1,39 @@
 import { NextFunction, Request, Response } from 'express';
-import ProductModel from '../models/product.model';
-import Product from '../types/products.type';
+import OrderModel from '../models/orders.model';
+import Order from '../types/orders.type';
 
-const productModel = new ProductModel();
+const orderProduct = new OrderModel();
 
-export const getProduct = async (
+export const getOrder = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const products = await productModel.getProduct(
+    const order = await orderProduct.getOrder(
       req.params.id as unknown as string,
     );
     res.json({
       status: 'success',
-      data: { products },
-      message: 'Products Retrieved Successfully',
+      data: { order },
+      message: 'Order Retrieved Successfully',
     });
   } catch (error) {
     next(error);
   }
 };
 
-export const getProducts = async (
+export const getOrders = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const products = await productModel.getProducts();
+    const orders = await orderProduct.getOrders();
     res.json({
       status: 'success',
-      data: { products },
-      message: 'Products Retrieved Successfully',
+      data: { orders },
+      message: 'Orders Retrieved Successfully',
     });
   } catch (error) {
     next(error);
@@ -46,11 +46,11 @@ export const create = async (
   next: NextFunction,
 ) => {
   try {
-    const product = await productModel.create(req.body);
+    const order = await orderProduct.create(req.body);
     res.json({
       status: 'success',
-      data: { product },
-      message: 'Product Created Successfully',
+      data: { order },
+      message: 'Order Created Successfully',
     });
   } catch (error) {
     next(error);
@@ -64,33 +64,33 @@ export const update = async (
 ) => {
   try {
     const id = req.params.id as unknown as string;
-    const product: Product = {
+    const order: Order = {
       id: id,
       ...req.body,
     };
-    const updateProduct = await productModel.update(product);
+    const updateOrder = await orderProduct.update(order);
     res.json({
       status: 'success',
-      data: { updateProduct },
-      message: 'Product Update Successfully',
+      data: { updateOrder },
+      message: 'Order Update Successfully',
     });
   } catch (error) {
     next(error);
   }
 };
 
-export const deleteProduct = async (
+export const deleteOrder = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const product = await productModel.deleteProduct(
+    const order = await orderProduct.deleteOrder(
       req.params.id as unknown as string,
     );
     res.json({
       status: 'success',
-      message: 'Product Delete Successfully',
+      message: 'Order Delete Successfully',
     });
   } catch (error) {
     next(error);

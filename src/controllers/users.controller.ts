@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 import UserModel from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import configEnv from '../configEnv';
+import User from '../types/user.type';
+
 const userModel = new UserModel();
 
 export const create = async (
@@ -61,10 +63,15 @@ export const update = async (
   next: NextFunction,
 ) => {
   try {
-    const user = await userModel.update(req.body);
+    const id = req.params.id as unknown as string;
+    const user: User = {
+      id: id,
+      ...req.body,
+    };
+    const updateUser = await userModel.update(user);
     res.json({
       status: 'success',
-      data: { user },
+      data: { updateUser },
       message: 'User Update Successfully',
     });
   } catch (error) {
@@ -81,7 +88,6 @@ export const deleteUser = async (
     const user = await userModel.deleteUser(req.params.id as unknown as string);
     res.json({
       status: 'success',
-      data: { user },
       message: 'User Delete Successfully',
     });
   } catch (error) {
