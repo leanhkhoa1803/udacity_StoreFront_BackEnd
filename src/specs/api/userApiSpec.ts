@@ -20,14 +20,7 @@ describe('User API Endpoints', () => {
   beforeAll(async () => {
     await userModel.create(user);
   });
-  //   afterAll(async () => {
-  //     // clean db
-  //     const connection = await db.connect();
-  //     const sql =
-  //       'DELETE FROM users;\nALTER SEQUENCE users_id_seq RESTART WITH 1';
-  //     await connection.query(sql);
-  //     connection.release();
-  //   });
+
   describe('Test Authenticate method', () => {
     it('should be able to authenticate to get token', async () => {
       const res = await request
@@ -78,7 +71,8 @@ describe('User API Endpoints', () => {
       expect(res.status).toBe(200);
       console.log(res.body);
 
-      const { email, user_name, first_name, last_name } = res.body.data.user;
+      const { email, user_name, first_name, last_name } =
+        res.body.data.updateUser;
 
       expect(email).toBe('testupdate@gmail.com');
       expect(user_name).toBe('testupdate');
