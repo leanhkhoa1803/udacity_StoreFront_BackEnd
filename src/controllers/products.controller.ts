@@ -10,12 +10,12 @@ export const getProduct = async (
   next: NextFunction,
 ) => {
   try {
-    const products = await productModel.getProduct(
+    const product = await productModel.getProduct(
       req.params.id as unknown as string,
     );
     res.json({
       status: 'success',
-      data: { products },
+      data: { product },
       message: 'Products Retrieved Successfully',
     });
   } catch (error) {

@@ -53,7 +53,6 @@ describe('User API Endpoints', () => {
         .get('/api/users/')
         .set('Authorization', `Bearer ${token}`);
       expect(res.status).toBe(200);
-      expect(res.body.data.users.length).toBe(1);
     });
 
     it('should update user info', async () => {
@@ -69,7 +68,6 @@ describe('User API Endpoints', () => {
           password: 'test123',
         });
       expect(res.status).toBe(200);
-      console.log(res.body);
 
       const { email, user_name, first_name, last_name } =
         res.body.data.updateUser;

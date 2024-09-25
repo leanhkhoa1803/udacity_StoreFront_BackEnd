@@ -26,7 +26,6 @@ class UserModel {
 
       return result.rows[0];
     } catch (error) {
-      console.log((error as Error).message);
       throw new Error(`Unable to create (${user.user_name})`);
     }
   }

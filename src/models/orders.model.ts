@@ -26,7 +26,6 @@ class OrderModel {
 
       return orderReult;
     } catch (error) {
-      console.log((error as Error).message);
       throw new Error(`Unable to create order`);
     }
   }
