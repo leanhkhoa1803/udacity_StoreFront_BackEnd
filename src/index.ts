@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
-import errorMiddleware from './middleware/error.middleware';
 import configEnv from './configEnv';
 import routes from './routes';
 
@@ -11,7 +10,6 @@ app.use(express.json());
 app.use(morgan('common'));
 
 app.use('/api', routes);
-app.use(errorMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
